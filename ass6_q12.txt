@@ -1,0 +1,94 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+class Vehicle {
+    
+    private String manufacturer;
+    private int cylinders;
+
+    public Vehicle() {
+        
+    }
+    public Vehicle(String manufacturer, int cylinders) {
+        this.manufacturer = manufacturer;
+        this.cylinders = cylinders;
+    }
+    @Override
+    public String toString() {
+        return "Manufacturer: " + manufacturer + ", Cylinders: " + cylinders;
+    }
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        Vehicle vehicle = (Vehicle) object;
+        if (cylinders != vehicle.cylinders) {
+            return false;
+        } 
+        else {
+            if (!manufacturer.equals(vehicle.manufacturer)) {
+                return false;
+            }
+            return true;
+        }
+    }
+}
+class Truck extends Vehicle {
+    
+    private double loadCapacity;
+    
+    public Truck() {
+        
+    }
+    public Truck(String manufacturer, int cylinders, double loadCapacity) {
+        super(manufacturer, cylinders);
+        this.loadCapacity = loadCapacity;
+    }
+    @Override
+    public String toString() {
+        return super.toString() + ", Load Capacity: " + loadCapacity + " tons";
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Truck truck = (Truck) obj;
+        if (super.equals(obj)) {
+            if (Double.compare(truck.loadCapacity, loadCapacity) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+public class ass6_q12 {
+    public static void main(String[] args) {
+        Truck truck1 = new Truck("Ford", 5, 1.5);
+        Truck truck2 = new Truck("Chevrolet", 5, 1.7);
+        System.out.println("Vehicle: " + truck1.toString());
+        System.out.println("Vehicle: " + truck2.toString());
+
+        if (truck1.equals(truck2)) {
+            System.out.println("Truck 1 and Truck 2 are equal.");
+        } 
+        else {
+            System.out.println("Truck 1 and Truck 2 are not equal.");
+        }
+    }
+}
